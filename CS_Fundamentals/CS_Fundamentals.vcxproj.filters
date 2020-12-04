@@ -23,5 +23,11 @@
     <ClInclude Include="VectorContainer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Notes.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="LinkedListContainer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
