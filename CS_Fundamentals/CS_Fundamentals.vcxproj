@@ -144,6 +144,7 @@
   <ItemGroup>
     <ClInclude Include="LinkedListContainer.h" />
     <ClInclude Include="Notes.h" />
+    <ClInclude Include="SingleLinkedList.h" />
     <ClInclude Include="VectorContainer.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
