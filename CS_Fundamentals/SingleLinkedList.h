@@ -152,7 +152,7 @@ public:
 
 	void clear()
 	{
-		if (isEmpty())
+		if (!isEmpty())
 		{
 			assert(m_head && m_tail);
 
