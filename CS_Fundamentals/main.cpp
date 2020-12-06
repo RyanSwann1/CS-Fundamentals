@@ -1,19 +1,20 @@
 #include "VectorContainer.h"
-#include "LinkedListContainer.h"
+#include "DoublyLinkedList.h"
+#include "SingleLinkedList.h"
 #include <list>
 #include <iostream>
+#include <utility>
+#include <forward_list>
+#include <stack>
+#include <vector>
+#include <deque>
 
-int main()
+template <class T>
+void printContainer(const SingleLinkedList<T>& container)
 {
-	LinkedListContainer<int> linkedListContainer;
-	for (int i = 0; i < 5; ++i)
+	if (!container.isEmpty())
 	{
-		linkedListContainer.pushFront(i);
-	}
-
-	if (!linkedListContainer.isEmpty())
-	{
-		LinkedListNode<int>* node = &linkedListContainer.getHead();
+		const SingleLinkedListNode<T>* node = &container.getHead();
 		while (node)
 		{
 			std::cout << node->data << "\n";
@@ -21,7 +22,105 @@ int main()
 		}
 	}
 
-	linkedListContainer.clear();
+	std::cout << "\n";
+}
+
+template <class T>
+void printContainerFromStart(const DoublyLinkedList<T>& container)
+{
+	if (!container.isEmpty())
+	{
+		const auto* node = &container.getHead();
+		while (node)
+		{
+			std::cout << node->data << "\n";
+			node = node->next;
+		}
+	}
+}
+
+template <class T>
+void printContainerFromEnd(const DoublyLinkedList<T>& container)
+{
+	if (!container.isEmpty())
+	{
+		const auto* node = &container.getTail();
+		while (node)
+		{
+			std::cout << node->data << "\n";
+			node = node->previous;
+		}
+	}
+}
+
+void removeFromDoublyLinkedList()
+{
+	std::list<int> numbers;
+	for (int i = 0; i < 5; ++i)
+	{
+		numbers.push_back(i);
+	}
+
+	auto iter = std::find(numbers.begin(), numbers.end(), 4);
+	if (iter != numbers.end())
+	{
+		numbers.erase(iter);
+	}
+
+	for (auto i : numbers)
+	{
+		std::cout << i << "\n";
+	}
+}
+
+void removeFromLinkedList()
+{
+	std::forward_list<int> numbers;
+	for (int i = 0; i < 5; ++i)
+	{
+		numbers.push_front(i);
+	}
+
+	auto cIter = std::find(numbers.begin(), numbers.end(), 4);
+	if (cIter != numbers.end())
+	{
+		numbers.remove(4);
+	}
+
+	for (auto i : numbers)
+	{
+		std::cout << i << "\n";
+	}
+}
+
+int main()
+{
+	//DoublyLinkedList<int> numbers;
+	//
+	//for (int i = 0; i < 5; ++i)
+	//{
+	//	numbers.pushBack(i);
+	//}
+
+	//printContainerFromStart(numbers);
+	//std::cout << "\n";
+	//DoublyLinkedList<int> numbers2;
+	//numbers2 = std::move(numbers);
+	//printContainerFromStart(numbers2);
+
+	DoublyLinkedList<int> numbers;
+	for (int i = 0; i < 5; ++i)
+	{
+		numbers.pushBack(i);
+	}
+
+	auto* node = numbers.get(3);
+	if (node)
+	{
+		numbers.remove(*node);
+	}
+
+	printContainerFromStart(numbers);
 
 	return 0;
 }

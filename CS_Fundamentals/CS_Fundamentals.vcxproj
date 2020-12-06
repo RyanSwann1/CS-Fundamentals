@@ -142,7 +142,7 @@
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="LinkedListContainer.h" />
+    <ClInclude Include="DoublyLinkedList.h" />
     <ClInclude Include="Notes.h" />
     <ClInclude Include="SingleLinkedList.h" />
     <ClInclude Include="VectorContainer.h" />
