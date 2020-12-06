@@ -144,6 +144,7 @@
   <ItemGroup>
     <ClInclude Include="DoublyLinkedList.h" />
     <ClInclude Include="Notes.h" />
+    <ClInclude Include="SharedPtr.h" />
     <ClInclude Include="SingleLinkedList.h" />
     <ClInclude Include="VectorContainer.h" />
   </ItemGroup>

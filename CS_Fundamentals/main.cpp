@@ -1,6 +1,7 @@
 #include "VectorContainer.h"
 #include "DoublyLinkedList.h"
 #include "SingleLinkedList.h"
+#include "SharedPtr.h"
 #include <list>
 #include <iostream>
 #include <utility>
@@ -8,6 +9,7 @@
 #include <stack>
 #include <vector>
 #include <deque>
+#include <memory>
 
 template <class T>
 void printContainer(const SingleLinkedList<T>& container)
@@ -95,32 +97,11 @@ void removeFromLinkedList()
 
 int main()
 {
-	//DoublyLinkedList<int> numbers;
-	//
-	//for (int i = 0; i < 5; ++i)
-	//{
-	//	numbers.pushBack(i);
-	//}
+	SharedPtr<int> number(2);
+	SharedPtr<int> anotherNumber(number);
 
-	//printContainerFromStart(numbers);
-	//std::cout << "\n";
-	//DoublyLinkedList<int> numbers2;
-	//numbers2 = std::move(numbers);
-	//printContainerFromStart(numbers2);
+	anotherNumber.reset();
 
-	DoublyLinkedList<int> numbers;
-	for (int i = 0; i < 5; ++i)
-	{
-		numbers.pushBack(i);
-	}
-
-	auto* node = numbers.get(3);
-	if (node)
-	{
-		numbers.remove(*node);
-	}
-
-	printContainerFromStart(numbers);
 
 	return 0;
 }
