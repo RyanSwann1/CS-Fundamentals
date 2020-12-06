@@ -4,7 +4,7 @@
 template <class T>
 struct SingleLinkedListNode
 {
-	SingleLinkedListNode(const T& data, SingleLinkedListNode* next)
+	SingleLinkedListNode(const T& data, SingleLinkedListNode* next = nullptr)
 		: data(data),
 		next(next)
 	{}
@@ -19,39 +19,60 @@ class SingleLinkedList
 public:
 	SingleLinkedList()
 		: m_head(nullptr),
+		m_tail(nullptr),
 		m_size(0)
 	{}
-	SingleLinkedList(const SingleLinkedList&) = delete;
-	SingleLinkedList& operator=(const SingleLinkedList&) = delete;
+	SingleLinkedList(const SingleLinkedList& orig)
+		: m_head(nullptr),
+		m_tail(nullptr),
+		m_size(0)
+	{
+		const SingleLinkedListNode<T>* node = orig.m_head;
+		while (node)
+		{
+			pushBack(node->data);
+			node = node->next;
+		}
+	}
+	SingleLinkedList& operator=(const SingleLinkedList& orig)
+	{
+		clear();
+		const SingleLinkedListNode<T>* node = orig.m_head;
+		while (node)
+		{
+			pushBack(node->data);
+			node = node->next;
+		}
+
+		return *this;
+	}
 	SingleLinkedList(SingleLinkedList&& orig) noexcept
 	{
 		m_head = orig.m_head;
+		m_tail = orig.m_tail;
 		m_size = orig.m_size;
 	
 		orig.m_head = nullptr;
+		orig.m_tail = nullptr;
 		orig.m_size = 0;
 	}
 	SingleLinkedList& operator=(SingleLinkedList&& orig) noexcept
 	{
-		if (!isEmpty())
-		{
-			clear();
-		}
+		clear();
 
 		m_head = orig.m_head;
+		m_tail = orig.m_tail;
 		m_size = orig.m_size;
 
 		orig.m_head = nullptr;
+		orig.m_tail = nullptr;
 		orig.m_size = 0;
 
 		return *this;
 	}
 	~SingleLinkedList()
 	{
-		if (!isEmpty())
-		{
-			clear();
-		}
+		clear();
 	}
 
 	bool isEmpty() const
@@ -61,17 +82,25 @@ public:
 
 	void pushFront(const T& data)
 	{
-		if (!isEmpty())
+		if (m_size == 0)
 		{
-			assert(m_head);
-
+			assert(!m_head && !m_tail);
+			SingleLinkedListNode<T>* node = new SingleLinkedListNode<T>(data, nullptr);
+			m_head = node;
+			m_tail = node;
+		}
+		else if (m_size == 1)
+		{
+			assert(m_head && m_tail);
 			SingleLinkedListNode<T>* node = new SingleLinkedListNode<T>(data, m_head);
 			m_head = node;
+			m_head->next = m_tail;
 		}
 		else
 		{
-			assert(!m_head);
-			m_head = new SingleLinkedListNode<T>(data, nullptr);
+			assert(m_head && m_tail);
+			SingleLinkedListNode<T>* node = new SingleLinkedListNode<T>(data, m_head);
+			m_head = node;
 		}
 
 		++m_size;
@@ -79,7 +108,7 @@ public:
 
 	void remove(const T& data)
 	{
-		assert(!isEmpty() && m_head);
+		assert(!isEmpty() && m_head && m_tail);
 
 		SingleLinkedListNode<T>* node = m_head;
 		SingleLinkedListNode<T>* previousNode = nullptr;
@@ -110,26 +139,34 @@ public:
 
 				++nodesDeleted;
 			}
-			else
+			else 
 			{
 				previousNode = node;
 				node = node->next;
 			}
 		}
 
+		m_tail = previousNode;
 		m_size -= nodesDeleted;
 	}
 
 	void clear()
 	{
-		assert(!isEmpty());
-
-		SingleLinkedListNode<T>* node = m_head;
-		while (node)
+		if (isEmpty())
 		{
-			SingleLinkedListNode<T>* nextNode = node->next;
-			delete node;
-			node = nextNode;
+			assert(m_head && m_tail);
+
+			SingleLinkedListNode<T>* node = m_head;
+			while (node)
+			{
+				SingleLinkedListNode<T>* nextNode = node->next;
+				delete node;
+				node = nextNode;
+			}
+
+			m_head = nullptr;
+			m_tail = nullptr;
+			m_size = 0;
 		}
 	}
 
@@ -147,5 +184,32 @@ public:
 
 private:
 	SingleLinkedListNode<T>* m_head;
+	SingleLinkedListNode<T>* m_tail;
 	size_t m_size;
+
+	void pushBack(const T& data)
+	{
+		SingleLinkedListNode<T>* node = new SingleLinkedListNode<T>(data);
+		
+		if (m_size == 0)
+		{
+			assert(!m_head && !m_tail);
+			m_head = node;
+			m_tail = node;
+		}
+		else if (m_size == 1)
+		{
+			assert(m_head && m_tail);
+			m_head->next = node;
+			m_tail = node;
+		}
+		else
+		{
+			assert(m_head && m_tail);
+			m_tail->next = node;
+			m_tail = node;
+		}
+
+		++m_size;
+	}
 };
