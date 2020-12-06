@@ -146,6 +146,7 @@
     <ClInclude Include="Notes.h" />
     <ClInclude Include="SharedPtr.h" />
     <ClInclude Include="SingleLinkedList.h" />
+    <ClInclude Include="UnorderedMap.h" />
     <ClInclude Include="VectorContainer.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
