@@ -15,10 +15,6 @@ struct SharedPtrResource
 		: data(data),
 		owners(1)
 	{}
-	SharedPtrResource(const T& data)
-		: data(data),
-		owners(1)
-	{}
 	SharedPtrResource(const SharedPtrResource&) = delete;
 	SharedPtrResource& operator=(const SharedPtrResource&) = delete;
 	SharedPtrResource(SharedPtrResource&&) = delete;
@@ -37,9 +33,6 @@ template <class T>
 class SharedPtr
 {
 public:
-	SharedPtr()
-		: m_resource(nullptr)
-	{}
 	SharedPtr(T* resourece)
 		: m_resource(new SharedPtrResource<T>(resourece))
 	{}
