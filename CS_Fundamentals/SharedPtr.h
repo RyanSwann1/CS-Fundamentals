@@ -2,6 +2,7 @@
 
 #include <assert.h>
 #include <utility>
+#include <atomic>
 
 template <class T>
 struct SharedPtrResource
@@ -29,7 +30,7 @@ struct SharedPtrResource
 	}
 
 	T* data;
-	int owners;
+	std::atomic<int> owners;
 };
 
 template <class T>
