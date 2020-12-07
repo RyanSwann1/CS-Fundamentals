@@ -1,10 +1,19 @@
 #pragma once
 
 #include <assert.h>
+#include <utility>
 
 template <class T>
 struct SharedPtrResource
 {
+	SharedPtrResource(T&& data)
+		: data(new T(std::move(data))),
+		owners(1)
+	{}
+	SharedPtrResource(T* data)
+		: data(data),
+		owners(1)
+	{}
 	SharedPtrResource(const T& data)
 		: data(data),
 		owners(1)
@@ -16,9 +25,10 @@ struct SharedPtrResource
 	~SharedPtrResource()
 	{
 		assert(owners == 0);
+		delete data;
 	}
 
-	T data;
+	T* data;
 	int owners;
 };
 
@@ -29,8 +39,11 @@ public:
 	SharedPtr()
 		: m_resource(nullptr)
 	{}
-	SharedPtr(const T& resource)
-		: m_resource(new SharedPtrResource<T>(resource))
+	SharedPtr(T* resourece)
+		: m_resource(new SharedPtrResource<T>(resourece))
+	{}
+	SharedPtr(T&& resource)
+		: m_resource(new SharedPtrResource<T>(std::move(resource)))
 	{}
 	SharedPtr(const SharedPtr& orig)
 		: m_resource(nullptr)
@@ -103,13 +116,13 @@ public:
 	const T& getResource() const
 	{
 		assert(m_resource);
-		return m_resource->data;
+		return *m_resource->data;
 	}
 
 	T& getResource() 
 	{
 		assert(m_resource);
-		return m_resource->data;
+		return *m_resource->data;
 	}
 
 private:
