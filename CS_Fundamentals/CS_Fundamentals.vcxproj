@@ -144,8 +144,10 @@
   <ItemGroup>
     <ClInclude Include="DoublyLinkedList.h" />
     <ClInclude Include="Notes.h" />
+    <ClInclude Include="PrePostIncrement.h" />
     <ClInclude Include="SharedPtr.h" />
     <ClInclude Include="SingleLinkedList.h" />
+    <ClInclude Include="UniquePtr.h" />
     <ClInclude Include="UnorderedMap.h" />
     <ClInclude Include="VectorContainer.h" />
   </ItemGroup>

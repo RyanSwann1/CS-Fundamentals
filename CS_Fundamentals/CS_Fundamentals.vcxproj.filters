@@ -38,5 +38,11 @@
     <ClInclude Include="UnorderedMap.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="PrePostIncrement.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="UniquePtr.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
