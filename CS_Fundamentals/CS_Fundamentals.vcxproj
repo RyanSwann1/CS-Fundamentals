@@ -142,11 +142,14 @@
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="BigONotation.h" />
+    <ClInclude Include="Cache.h" />
     <ClInclude Include="DoublyLinkedList.h" />
     <ClInclude Include="Notes.h" />
     <ClInclude Include="PrePostIncrement.h" />
     <ClInclude Include="SharedPtr.h" />
     <ClInclude Include="SingleLinkedList.h" />
+    <ClInclude Include="StructPadding.h" />
     <ClInclude Include="UniquePtr.h" />
     <ClInclude Include="UnorderedMap.h" />
     <ClInclude Include="VectorContainer.h" />

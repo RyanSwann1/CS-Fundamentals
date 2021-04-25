@@ -44,5 +44,14 @@
     <ClInclude Include="UniquePtr.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Cache.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="BigONotation.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="StructPadding.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

@@ -3,6 +3,8 @@
 #include "SingleLinkedList.h"
 #include "SharedPtr.h"
 #include "UnorderedMap.h"
+#include "Cache.h"
+#include "StructPadding.h"
 #include <list>
 #include <iostream>
 #include <utility>
@@ -111,28 +113,10 @@ int getRandomNumber(int min, int max)
 
 int main()
 {
-	//std::map<int, int> container;
-
-	//for (int i = 0; i < 10; ++i)
-	//{
-	//	container.emplace(getRandomNumber(0, 20), i);
-	//}
-
-	//for (auto& i : container)
-	//{
-	//	std::cout << i.first << "\n";
-	//	std::cout << i.second << "\n";
-	//	std::cout << "\n";
-	//}
-	
-	UnorderedMap<std::string> names;
-	names.insert(20, "John");
-	names.insert(20, "Dave");
-	names.insert(20, "Peter");
-	names.insert(22, "Mike");
-
-	UnorderedMap<std::string> moreNames;
-	moreNames = std::move(names);
+	std::cout << sizeof(StructPadding::StructA) << "\n";
+	std::cout << sizeof(StructPadding::StructB) << "\n";
+	std::cout << sizeof(StructPadding::StructC) << "\n";
+	std::cout << sizeof(StructPadding::StructD) << "\n";
 
 	return 0;
 }
