@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -116,6 +116,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -139,18 +140,30 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Cache.cpp" />
+    <ClCompile Include="InstructionCache.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="ShortVector.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BigONotation.h" />
     <ClInclude Include="Cache.h" />
+    <ClInclude Include="ConstexprTutorials.h" />
     <ClInclude Include="DoublyLinkedList.h" />
+    <ClInclude Include="Explicit.h" />
+    <ClInclude Include="InitializerList.h" />
+    <ClInclude Include="InstructionCache.h" />
     <ClInclude Include="Notes.h" />
     <ClInclude Include="PrePostIncrement.h" />
+    <ClInclude Include="PriorityQueue.h" />
+    <ClInclude Include="RValueReferences.h" />
     <ClInclude Include="SharedPtr.h" />
+    <ClInclude Include="ShortVector.h" />
     <ClInclude Include="SingleLinkedList.h" />
+    <ClInclude Include="std_function.h" />
     <ClInclude Include="StructPadding.h" />
     <ClInclude Include="UniquePtr.h" />
+    <ClInclude Include="UniversalReferences.h" />
     <ClInclude Include="UnorderedMap.h" />
     <ClInclude Include="VectorContainer.h" />
   </ItemGroup>

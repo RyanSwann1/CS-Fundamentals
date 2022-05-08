@@ -5,6 +5,12 @@
 #include "UnorderedMap.h"
 #include "Cache.h"
 #include "StructPadding.h"
+#include "ShortVector.h"
+#include "InstructionCache.h"
+#include "InitializerList.h"
+#include "ConstexprTutorials.h"
+#include "std_function.h"
+#include "PriorityQueue.h"
 #include <list>
 #include <iostream>
 #include <utility>
@@ -17,6 +23,10 @@
 #include <unordered_set>
 #include <map>
 #include <random>
+#include <iterator>
+#include <thread>
+#include <optional>
+#include <atomic>
 
 template <class T>
 void printContainer(const SingleLinkedList<T>& container)
@@ -111,12 +121,53 @@ int getRandomNumber(int min, int max)
 	return dis(gen);
 }
 
+void cacheThing()
+{
+	std::vector<int> numbers(100, 1);
+	for (auto i : numbers)
+	{
+		std::cout << i << "\n";
+	}
+
+	std::vector<std::unique_ptr<int>> moreNumbers;
+	std::generate_n(std::back_inserter(moreNumbers), 50, []() { return std::make_unique<int>(5); });
+
+	for (const auto& i : moreNumbers)
+	{
+		std::cout << *i << "\n";
+	}
+
+	std::list<int> evenMoreNumbers(100, 1);
+	for (auto i : evenMoreNumbers)
+	{
+		std::cout << i << "\n";
+	}
+}
+
+void slow2DThread()
+{
+
+}
+
+void fast2DThread()
+{
+
+}
+
 int main()
 {
-	std::cout << sizeof(StructPadding::StructA) << "\n";
-	std::cout << sizeof(StructPadding::StructB) << "\n";
-	std::cout << sizeof(StructPadding::StructC) << "\n";
-	std::cout << sizeof(StructPadding::StructD) << "\n";
+	//unordered_map_lesson::run();
+	priority_queue::run();
 
-	return 0;
+	//for (auto& i : numbers)
+	//{
+	//	std::cout << i << "\n";
+	//}
+
+	//constexpr int number = constexpr_tutorials::getSum();
+	//std::cout << number << "\n";
+
+	//constexpr int resultv1 = constexpr_tutorials::maybe_allocate(1);
+	//constexpr int resultv2 = constexpr_tutorials::maybe_allocate(2);
+	//int resultv3 = constexpr_tutorials::maybe_allocate(3);
 }
